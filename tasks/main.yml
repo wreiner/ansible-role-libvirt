@@ -1,0 +1,30 @@
+---
+- include_tasks: "install_{{ ansible_os_family }}.yml"
+
+- name: "Create directories"
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /var/lib/libvirt/images
+    - /var/lib/libvirt/vmpool01
+
+- name: "Add user {{ libvirt__privileged_users }} to libvirt and kvm group"
+  user:
+    append: yes
+    groups: "libvirt,kvm"
+    name: "{{ item }}"
+  with_items: "{{ libvirt__privileged_users }}"
+  when: libvirt__privileged_users is defined
+
+- name: "Start default libvirt network"
+  virt_net:
+    name: default
+    state: active
+    autostart: yes
+
+- name: "Start and enable libvirtd"
+  service:
+    name: libvirtd
+    state: restarted
+    enabled: yes

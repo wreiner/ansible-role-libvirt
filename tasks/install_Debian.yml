@@ -1,0 +1,27 @@
+---
+# systemctl status libvirtd.service
+# virsh net-start default
+# virsh net-autostart default
+
+# https://www.linuxtechi.com/install-configure-kvm-debian-10-buster/
+
+- name: "Install virtualization packets"
+  apt:
+    name:
+      - qemu-kvm
+      - libvirt-daemon
+      - bridge-utils
+      - virtinst
+      - libvirt-daemon-system
+      - netcat-openbsd
+      - dnsmasq
+      - ebtables
+      - python3-lxml
+    state: present
+    update_cache: yes
+
+- name: "Disable and stop dnsmasq"
+  service:
+    name: "dnsmasq"
+    state: stopped
+    enabled: false

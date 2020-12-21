@@ -1,0 +1,10 @@
+---
+- name: "install libvirt"
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - libvirt
+    - ebtables
+    - dnsmasq
+    - qemu
