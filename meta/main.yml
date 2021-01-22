@@ -1,0 +1,19 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: libvirt
+  author: wreiner
+  description: This role is to setup libvirtd on a host.
+  company: "wreiner.at"
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.4
+  platforms:
+    - name: Debian
+      versions:
+        - 10
+    - name: Archlinux
+      versions:
+        - all
+  galaxy_tags:
+    - virtualization
