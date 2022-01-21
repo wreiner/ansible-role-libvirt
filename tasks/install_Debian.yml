@@ -16,6 +16,7 @@
       - netcat-openbsd
       - dnsmasq
       - ebtables
+      - ovmf
       - python3-lxml
     state: present
     update_cache: yes

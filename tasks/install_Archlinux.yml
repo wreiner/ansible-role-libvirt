@@ -8,3 +8,4 @@
     - ebtables
     - dnsmasq
     - qemu
+    - edk2-ovmf
