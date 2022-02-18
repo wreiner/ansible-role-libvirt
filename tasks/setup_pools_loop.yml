@@ -1,0 +1,17 @@
+---
+- name: "Create pool directory if it doesn't exist"
+  file:
+    path: "{{ item.target_path }}"
+    state: directory
+
+- name: "Create filesystem pool"
+  community.libvirt.virt_pool:
+    command: define
+    name: "{{ item.name }}"
+    xml: '{{ lookup("template", "fs_pool.xml.j2") }}'
+
+- name: "Start {{ item.name}} libvirt pool"
+  community.libvirt.virt_pool:
+    name: "{{ item.name}}"
+    state: active
+    autostart: yes

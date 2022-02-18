@@ -5,7 +5,7 @@
 
 # https://www.linuxtechi.com/install-configure-kvm-debian-10-buster/
 
-- name: "Install virtualization packets"
+- name: "Install virtualization packages"
   apt:
     name:
       - qemu-kvm

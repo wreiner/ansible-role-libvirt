@@ -1,0 +1,18 @@
+---
+- name: "Start default libvirt network"
+  community.libvirt.virt_net:
+    name: default
+    state: active
+    autostart: yes
+
+- name: "Create bridged network"
+  community.libvirt.virt_net:
+    command: define
+    name: bridged_network
+    xml: '{{ lookup("template", "bridged_network.xml.j2") }}'
+
+- name: "Start bridged_network libvirt network"
+  community.libvirt.virt_net:
+    name: bridged_network
+    state: active
+    autostart: yes
