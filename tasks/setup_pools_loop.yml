@@ -14,4 +14,8 @@
   community.libvirt.virt_pool:
     name: "{{ item.name}}"
     state: active
+
+- name: "Set autostart {{ item.name}} libvirt pool"
+  community.libvirt.virt_pool:
+    name: "{{ item.name}}"
     autostart: yes

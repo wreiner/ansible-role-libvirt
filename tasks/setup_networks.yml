@@ -3,6 +3,10 @@
   community.libvirt.virt_net:
     name: default
     state: active
+
+- name: "Set autostart default libvirt network"
+  community.libvirt.virt_net:
+    name: default
     autostart: yes
 
 - name: "Create bridged network"
@@ -15,4 +19,8 @@
   community.libvirt.virt_net:
     name: bridged_network
     state: active
+
+- name: "Set autostart bridged_network libvirt network"
+  community.libvirt.virt_net:
+    name: bridged_network
     autostart: yes
