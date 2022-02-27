@@ -1,0 +1,18 @@
+# ansible managed
+#
+# This profile is for the domain whose UUID matches this file.
+#
+
+#include <tunables/global>
+
+profile LIBVIRT_TEMPLATE flags=(attach_disconnected) {
+  #include <abstractions/libvirt-qemu>
+
+  # Allow access to custom storage pool
+  {% if libvirt__fs_pools is defined %}
+  {% for _libvirt__pool in libvirt__fs_pools  %}
+  "{{ _libvirt__pool.target_path }}/" r,"
+  "{{ _libvirt__pool.target_path }}/" rwk,"
+  {% endfor %}
+  {% endif %}
+}

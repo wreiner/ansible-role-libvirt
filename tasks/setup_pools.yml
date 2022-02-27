@@ -2,3 +2,10 @@
 - name: "Create filesystem pools"
   include_tasks: "setup_pools_loop.yml"
   loop: "{{ libvirt__fs_pools }}"
+
+- name: "Add pools to apparmor template"
+  template:
+    src: "TEMPLATE.qemu.j2"
+    dest: "/etc/apparmor.d/libvirt/TEMPLATE.qemu"
+  when: ansible_os_family == "Debian"
+  notify: "Restart apparmor"
