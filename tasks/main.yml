@@ -4,7 +4,7 @@
 - name: "Add user {{ libvirt__privileged_users }} to libvirt and kvm group"
   user:
     append: yes
-    groups: "libvirt,kvm"
+    groups: "plugdev,input,kvm,libvirt,libvirt-qemu"
     name: "{{ item }}"
   with_items: "{{ libvirt__privileged_users }}"
   when: libvirt__privileged_users is defined
